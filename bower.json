@@ -1,0 +1,24 @@
+{
+  "name": "angular-silent-fail-helper",
+  "main": "angular-silent-fail-helper.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/paquettea/angular-silent-fail-helper",
+  "authors": [
+    "Alexandre Paquette <alexandre.paquette@nadrox.com>"
+  ],
+  "description": "Expose function to help diagnose when angularjs fails sliently because of missing dependency (tested with 1.4)",
+  "moduleType": [],
+  "keywords": [
+    "angularjs",
+    "dependency",
+    "patch"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
