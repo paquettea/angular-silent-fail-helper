@@ -1,7 +1,7 @@
 (function () {
     var angularModule = angular.module;
-    var requestedDependencies = ['ng'];
-    var requestedModule = [];
+    var requestedDependencies = [];
+    var requestedModule = ['ng'];
 
     window.__angularCheckMissingDependencies = function () {
         var i;
@@ -19,16 +19,28 @@
         }
     };
 
-    angular.module = function (moduleName, depedencies) {
+    window.__angularListModule = function () {
+        console.log('initialized module', requestedModule);
+        console.log('requested dependencies', requestedDependencies);
+    };
 
-        if (angular.isDefined(depedencies)) {
-            angular.extend(requestedDependencies, depedencies);
+    angular.module = function (moduleName, dependencies) {
+        var i;
+
+        if (angular.isDefined(dependencies)) {
+            for (i = 0; i < dependencies.length; i++) {
+                if (requestedDependencies.indexOf(dependencies[i]) === -1) {
+                    requestedDependencies.push(dependencies[i]);
+                }
+            }
         }
 
-        requestedModule.push(moduleName);
+        if (requestedModule.indexOf(moduleName) === -1) {
+            requestedModule.push(moduleName);
+        }
+
 
         //call to standard angular function
         return angularModule.apply(angular, arguments);
     };
 }());
-
